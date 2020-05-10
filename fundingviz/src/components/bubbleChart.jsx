@@ -64,7 +64,10 @@ class BubbleChart extends Component {
             svg.append("g")
                 .call(d3.axisBottom(y));
 
-        //
+        // create the size of bubble
+        const z = d3.scaleLinear()
+                .domain([0, 80])
+                .range([0, 1]);
     }
 
     render() {

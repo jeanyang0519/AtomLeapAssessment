@@ -6,7 +6,7 @@ The x-axis shows the categories, y-axis represents the number of rounds, and the
 
 <img src='fundingviz/public/screenshot.png' width='100%'/>
 
-## How to run the file
+## How to run the app
 You can run the app in the development mode by typing the code below in the terminal:
 ```
 cd fundingviz

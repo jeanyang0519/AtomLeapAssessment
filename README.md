@@ -1,8 +1,8 @@
 # AtomLeap Technical Assessment
 
-This is an application that presents the data visualization of funding volume and number of funding rounds per category.
+This is an application created by React and D3.js that presents the data visualization of funding volume and number of funding rounds per category.
 
-The x-axis shows the categories, y-axis represents the number of rounds, and the size of the bubble refers to the total funding amount
+The x-axis shows the categories, y-axis represents the number of rounds, and the size of the bubble indicates the total funding amount
 
 <img src='fundingviz/public/screenshot.png' width='100%'/>
 

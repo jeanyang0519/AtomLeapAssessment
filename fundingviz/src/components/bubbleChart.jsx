@@ -68,6 +68,11 @@ class BubbleChart extends Component {
         const z = d3.scaleLinear()
                 .domain([0, 80])
                 .range([0, 1]);
+        
+        const circle = svg.selectAll("circle")
+                .data(this.state.aggregatedData)
+
+                
     }
 
     render() {

@@ -46,6 +46,11 @@ class BubbleChart extends Component {
         // to pass category data in x axis
         const category = d3.map(this.state.aggregatedData, function(d) { return d.key; }).keys();
 
+        // create color for the bubble
+        const color = d3.scaleOrdinal()
+            .domain(category)
+            .range(d3.schemePaired)
+
         // append svg to the page
         const svg = d3.select(this.ref.current)
                 .append("svg")
@@ -75,10 +80,17 @@ class BubbleChart extends Component {
                 .domain([0, 80])
                 .range([0, 1]);
         
-        // create color for the bubble
-        const color = d3.scaleOrdinal()
-                .domain(category)
-                .range(d3.schemePaired)
+        // create tooltip
+        const tooltip = d3.select(this.ref.current)
+                .append("circle")
+                .attr("class", "tooltip")
+                .style("background-color", "black")
+                .style("border-radius", "10px")
+                .style("padding", "10px")
+                .style("color", "white")
+        
+
+        
 
         // create circle
         const circle = svg.selectAll("circle")

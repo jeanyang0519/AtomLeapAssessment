@@ -80,9 +80,11 @@ class BubbleChart extends Component {
                 .domain(category)
                 .range(d3.schemePaired)
 
+        // create circle
         const circle = svg.selectAll("circle")
                 .data(this.state.aggregatedData)
 
+        // bring everything together
         circle.enter()
             .append("circle")
             .transition()
@@ -92,6 +94,7 @@ class BubbleChart extends Component {
             .attr("r", function (d) { return z(Math.sqrt(d.value.total)); })
             .style("fill", function (d) { return color(Math.sqrt(d.value.total)); })
 
+        // add label for x axis
         svg.append('text')
             .attr('class', 'label')
             .attr('x', width / 2)
@@ -100,6 +103,7 @@ class BubbleChart extends Component {
             .text('categories')
             .style('fill', 'gray')
 
+        // add label for y axis
         svg.append('text')
             .attr('class', 'label')
             .attr('x', -(height / 2))

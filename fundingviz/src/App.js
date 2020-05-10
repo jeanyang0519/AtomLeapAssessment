@@ -5,6 +5,9 @@ import BubbleChart from './components/bubbleChart';
 function App() {
   return (
     <div className="App">
+      <div>
+        Funding by Industry Analytics
+      </div>
       <BubbleChart/>
     </div>
   );

@@ -75,6 +75,11 @@ class BubbleChart extends Component {
                 .domain([0, 80])
                 .range([0, 1]);
         
+        // create color for the bubble
+        const color = d3.scaleOrdinal()
+                .domain(category)
+                .range(d3.schemePaired)
+
         const circle = svg.selectAll("circle")
                 .data(this.state.aggregatedData)
 
@@ -85,7 +90,7 @@ class BubbleChart extends Component {
             .attr("cx", function(d) { return x(d.key); })
             .attr("cy", function (d) { return y(d.value.rounds); })
             .attr("r", function (d) { return z(Math.sqrt(d.value.total)); })
-            .style("fill", "gray")
+            .style("fill", function (d) { return color(Math.sqrt(d.value.total)); })
 
     }
 

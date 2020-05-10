@@ -9,6 +9,8 @@ class BubbleChart extends Component {
         this.state = {
             aggregatedData: []
         }
+
+        this.ref = React.createRef();
     }
 
     componentDidMount() {
@@ -35,12 +37,17 @@ class BubbleChart extends Component {
         width = 700 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
+        // to pass category data in x axis
         const category = d3.map(this.state.aggregatedData, function(d) { return d.key; }).keys();
+
+        const 
     }
 
     render() {
         return(
-            <div></div>
+            <div>
+                <div ref={}></div>
+            </div>
         )
     }
 }

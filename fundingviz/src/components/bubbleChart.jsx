@@ -82,20 +82,23 @@ class BubbleChart extends Component {
         
         // create tooltip
         const tooltip = d3.select(this.ref.current)
-                .append("circle")
+                .append("div")
                 .attr("class", "tooltip")
                 .style("background-color", "black")
                 .style("border-radius", "10px")
                 .style("padding", "10px")
                 .style("color", "white")
+                .style("opacity", 0)
         
         const showTooltip = function(d) {
             tooltip.transition()
-                .duration(100)
+                .duration(400)
             tooltip
+                .style("opacity", 1)
                 .html("Funding Amount: " + d.value.total)
                 .style("left", (d3.mouse(this)[0]))
                 .style("top", (d3.mouse(this)[1]))
+                
         }
 
         const moveTooltip = function(d) {
@@ -106,7 +109,8 @@ class BubbleChart extends Component {
 
         const hideTooltip = function(d) {
             tooltip.transition()
-                .duration(100)
+                .duration(400)
+                .style("opacity", 0)
         }
         
 

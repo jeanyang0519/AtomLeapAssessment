@@ -31,6 +31,12 @@ class BubbleChart extends Component {
             })
     }
 
+    componentDidUpdate() {
+        if (this.state.aggregatedData.length) {
+            this.drawBubbleChart();
+        }
+    }
+
     drawBubbleChart() {
         // create dimensions for the chart
         const margin = { top: 50, right: 20, bottom: 60, left: 70 },
@@ -72,7 +78,15 @@ class BubbleChart extends Component {
         const circle = svg.selectAll("circle")
                 .data(this.state.aggregatedData)
 
-                
+        circle.enter()
+            .append("circle")
+            .transition()
+            .duration(1000)
+            .attr("cx", function(d) { return x(d.key); })
+            .attr("cy", function (d) { return y(d.value.rounds); })
+            .attr("r", function (d) { return z(Math.sqrt(d.value.total)); })
+            .style("fill", "gray")
+
     }
 
     render() {

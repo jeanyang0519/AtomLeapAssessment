@@ -40,6 +40,7 @@ class BubbleChart extends Component {
         // to pass category data in x axis
         const category = d3.map(this.state.aggregatedData, function(d) { return d.key; }).keys();
 
+        // append svg to the page
         const svg = d3.select(this.ref.current)
                 .append("svg")
                 .attr("width", width + margin.left + margin.right)
@@ -47,7 +48,14 @@ class BubbleChart extends Component {
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        // const x = 
+        // create x asix 
+        const x = d3.scalePoint()
+                .range([0, width])
+                .domain(category)
+                .padding(1);
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x));
     }
 
     render() {

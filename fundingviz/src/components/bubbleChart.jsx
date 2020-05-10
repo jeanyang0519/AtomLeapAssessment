@@ -86,7 +86,7 @@ class BubbleChart extends Component {
                 .attr("class", "tooltip")
                 .style("background-color", "black")
                 .style("border-radius", "10px")
-                .style("padding", "10px")
+                .style("padding", "15px")
                 .style("color", "white")
                 .style("opacity", 0)
         

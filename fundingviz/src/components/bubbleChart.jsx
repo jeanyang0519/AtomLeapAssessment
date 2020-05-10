@@ -92,6 +92,23 @@ class BubbleChart extends Component {
             .attr("r", function (d) { return z(Math.sqrt(d.value.total)); })
             .style("fill", function (d) { return color(Math.sqrt(d.value.total)); })
 
+        svg.append('text')
+            .attr('class', 'label')
+            .attr('x', width / 2)
+            .attr('y', height + 50)
+            .attr('text-anchor', 'middle')
+            .text('categories')
+            .style('fill', 'gray')
+
+        svg.append('text')
+            .attr('class', 'label')
+            .attr('x', -(height / 2))
+            .attr('y', -50)
+            .attr('transform', 'rotate(-90)')
+            .attr('text-anchor', 'middle')
+            .text('Number of rounds')
+            .style('fill', 'gray')
+
     }
 
     render() {

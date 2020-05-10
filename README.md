@@ -9,9 +9,8 @@ The x-axis shows the categories, y-axis represents the number of rounds, and the
 ## How to run the file
 You can run the file by typing the code below in the terminal:
 ```
+cd fundingviz
 npm install
-```
-```
 npm start
 ```
 

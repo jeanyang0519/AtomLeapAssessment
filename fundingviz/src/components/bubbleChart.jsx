@@ -12,6 +12,7 @@ class BubbleChart extends Component {
     }
 
     componentDidMount() {
+        // aggregate data
         axios.get("http://demo0377384.mockable.io/funding-test")
             .then(res => {
                 let data = res.data;
@@ -24,10 +25,17 @@ class BubbleChart extends Component {
                     .entries(data);
 
                 this.setState({ aggregatedData });
-                console.log(this.state.aggregatedData)
+                // console.log(this.state.aggregatedData)
             })
+    }
 
-            
+    drawBubbleChart() {
+        // create dimensions for the chart
+        const margin = { top: 50, right: 20, bottom: 60, left: 70 },
+        width = 700 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+        const category = d3.map(this.state.aggregatedData, function(d) { return d.key; }).keys();
     }
 
     render() {

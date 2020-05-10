@@ -90,8 +90,9 @@ class BubbleChart extends Component {
                 .style("color", "white")
         
         const showTooltip = function(d) {
-            tooltop.transition()
+            tooltip.transition()
                 .duration(100)
+            tooltip
                 .html("Funding Amount: " + d.value.total)
                 .style("left", (d3.mouse(this)[0]))
                 .style("top", (d3.mouse(this)[1]))
@@ -122,6 +123,12 @@ class BubbleChart extends Component {
             .attr("cy", function (d) { return y(d.value.rounds); })
             .attr("r", function (d) { return z(Math.sqrt(d.value.total)); })
             .style("fill", function (d) { return color(Math.sqrt(d.value.total)); })
+
+        // add tooltip on the circle
+        svg.selectAll("circle")
+            .on("mouseover", showTooltip)
+            .on("mousemove", moveTooltip)
+            .on("mouseleave", hideTooltip)
 
         // add label for x axis
         svg.append('text')

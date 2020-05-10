@@ -40,13 +40,20 @@ class BubbleChart extends Component {
         // to pass category data in x axis
         const category = d3.map(this.state.aggregatedData, function(d) { return d.key; }).keys();
 
-        const 
+        const svg = d3.select(this.ref.current)
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // const x = 
     }
 
     render() {
         return(
             <div>
-                <div ref={}></div>
+                <div ref={this.ref}></div>
             </div>
         )
     }

@@ -72,24 +72,26 @@ class BubbleChart extends Component {
 
         // create x asix 
         const x = d3.scalePoint()
-                .range([0, width])
-                .domain(category)
-                .padding(1);
-            svg.append("g")
-                .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x));
+            .domain(category)
+            .range([0, width * 1.3])
+            .padding(0.5);
+        svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
 
         // create y asix
-        const y = d3.scaleLinear()
-                .domain([0, 10])
-                .range([height, 0]);
-            svg.append("g")
-                .call(d3.axisLeft(y));
+        let y = d3.scaleLinear()
+            .domain([0, 10])
+            .range([height, 0]);
+        let yAxis = svg.append("g")
+            .attr("class", "axis")
+            .call(d3.axisLeft(y));
 
         // create the size of bubble
-        const z = d3.scaleLinear()
-                .domain([0, 80])
-                .range([0, 1]);
+        let z = d3.scaleSqrt()
+            .domain([0, 6400])
+            .range([0, 1]);
         
         
         

@@ -27,9 +27,32 @@ class Table extends Component {
         })
     }
 
+    renderInfo() {
+        const amount = [];
+        let sum = 0;
+        this.props.rows.map(info => {
+            const { fundingAmount } = info;
+            amount.push(fundingAmount);
+            sum += fundingAmount;
+        })
+
+
+        return (
+            <p className="info">
+                Founding amount in total: {sum.toLocaleString()}
+                <br />
+                Number of funding rounds: {amount.length}
+                <br />
+                Categories with funding range
+                between {Math.min(...amount).toLocaleString()} to {Math.max(...amount).toLocaleString()}
+            </p>
+        )
+    }
+
     render() {
         return (
             <div>
+                <div>{this.renderInfo()}</div>
                 <table>
                     <tbody>
                         <tr>{this.renderHeader()}</tr>

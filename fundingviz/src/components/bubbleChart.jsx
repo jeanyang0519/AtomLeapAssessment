@@ -136,6 +136,50 @@ class BubbleChart extends Component {
             .attr('text-anchor', 'middle')
             .text("number of rounds")
 
+        const update = (option) => {
+            const option2 = option === "funding amount" ? "number of rounds" : "funding amount"
+
+            if (option === "funding amount") {
+                y = d3.scaleLinear()
+                    .domain([0, 10])
+                    .range([height, 0]);
+                yAxis
+                    .transition()
+                    .duration(1000)
+                    .call(d3.axisLeft(y))
+
+                z = d3.scaleSqrt()
+                    .domain([0, 6400])
+                    .range([0, 1]);
+
+            } else {
+                z = d3.scaleLinear()
+                    .domain([0, 10])
+                    .range([0, 50]);
+
+                y = d3.scaleSqrt()
+                    .domain([0, 60000000])
+                    .range([height, 0])
+
+                yAxis
+                    .transition()
+                    .duration(1000)
+                    .call(d3.axisLeft(y))
+            }
+
+            const circle = svg.selectAll("circle")
+            circle.enter()
+                .append("circle")
+                .merge(circle)
+                .transition()
+                .duration(1000)
+                .attr("cx", function (d) { return x(d.key); })
+                .attr("cy", function (d) { return y(d.value[option2]); })
+                .attr("r", function (d) { return z(d.value[option]); })
+                .style("fill", function (d) { return color(Math.sqrt(d.value["funding amount"])); })
+        }
+        
+
     }
 
     render() {

@@ -7,7 +7,8 @@ class BubbleChart extends Component {
         super(props)
         
         this.state = {
-            aggregatedData: []
+            aggregatedData: [],
+            selectedCategory: null
         }
 
     }
@@ -70,7 +71,7 @@ class BubbleChart extends Component {
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        // create x asix 
+        // create x axis 
         const x = d3.scalePoint()
             .domain(category)
             .range([0, width * 1.3])
@@ -80,7 +81,7 @@ class BubbleChart extends Component {
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
 
-        // create y asix
+        // create y axis
         let y = d3.scaleLinear()
             .domain([0, 10])
             .range([height, 0]);
@@ -96,40 +97,44 @@ class BubbleChart extends Component {
         
         
 
-        // create circle
+        // Add circle
         const circle = svg.selectAll("circle")
                 .data(this.state.aggregatedData)
 
-        // bring everything together
         circle.enter()
             .append("circle")
+            .attr("class", "bubble")
+            .merge(circle)
+            .on("click", (d) => {
+                this.setState({ selectedCategory: d.value.table })
+            })
             .transition()
             .duration(1000)
-            .attr("cx", function(d) { return x(d.key); })
-            .attr("cy", function (d) { return y(d.value.rounds); })
-            .attr("r", function (d) { return z(Math.sqrt(d.value.total)); })
-            .style("fill", function (d) { return color(Math.sqrt(d.value.total)); })
+            .attr("cx", function (d) { return x(d.key); })
+            .attr("cy", function (d) { return y(d.value["number of rounds"]); })
+            .attr("r", function (d) { return z(d.value["funding amount"]); })
+            .style("fill", function (d) { return color(Math.sqrt(d.value["funding amount"])); })
+            .style("cursor", "pointer");
 
         
 
-        // add label for x axis
+        // X Label
         svg.append('text')
             .attr('class', 'label')
-            .attr('x', width / 2)
-            .attr('y', height + 50)
+            .attr('x', width / 2 + 50)
+            .attr('y', height + 60)
             .attr('text-anchor', 'middle')
             .text('categories')
-            .style('fill', 'gray')
 
-        // add label for y axis
-        svg.append('text')
+        // Y Label
+        const yLabel = svg.append('text')
+            .classed("option", true)
             .attr('class', 'label')
             .attr('x', -(height / 2))
-            .attr('y', -50)
+            .attr('y', -70)
             .attr('transform', 'rotate(-90)')
             .attr('text-anchor', 'middle')
-            .text('Number of rounds')
-            .style('fill', 'gray')
+            .text("number of rounds")
 
     }
 

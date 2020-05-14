@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import axios from 'axios';
+import Table from './table';
 
 class BubbleChart extends Component {
     constructor(props) {
@@ -218,12 +219,19 @@ class BubbleChart extends Component {
     }
 
     render() {
+        const table = this.state.selectedCategory ? (
+            <Table rows={this.state.selectedCategory} />
+        ) : <span>You can click the circle to see the detail information here!</span>;
+
         return(
             <div>
                 <div className="dropdownWrapper">
                     Data: <select className="dropdown"></select>
                 </div>
                 <div className="bubble"></div>
+                <div className="tableWrapper">
+                    <div className="table">{table}</div>
+                </div>
             </div>
         )
     }

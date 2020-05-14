@@ -50,6 +50,17 @@ class BubbleChart extends Component {
             .domain(category)
             .range(d3.schemePaired)
 
+        const options = ['funding amount', 'number of rounds']
+
+        // add the options to the dropdown
+        d3.select(".dropdown")
+            .selectAll('myOptions')
+            .data(options)
+            .enter()
+            .append('option')
+            .text(function (d) { return d; }) 
+            .attr("value", function (d) { return d; }) 
+
         const widthSvg = width + margin.left + margin.right;
         const heightSvg = height + margin.top + margin.bottom;
         // append svg to the page
@@ -123,6 +134,9 @@ class BubbleChart extends Component {
     render() {
         return(
             <div>
+                <div className="dropdownWrapper">
+                    Data: <select className="dropdown"></select>
+                </div>
                 <div className="bubble"></div>
             </div>
         )

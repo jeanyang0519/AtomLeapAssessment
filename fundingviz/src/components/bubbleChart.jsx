@@ -178,6 +178,38 @@ class BubbleChart extends Component {
                 .attr("r", function (d) { return z(d.value[option]); })
                 .style("fill", function (d) { return color(Math.sqrt(d.value["funding amount"])); })
         }
+
+        const updateLabel = (option) => {
+            const option2 = option === "funding amount" ? "number of rounds" : "funding amount"
+            yLabel
+                .transition()
+                .duration(1000)
+                .attr('class', 'label')
+                .attr('x', -(height / 2))
+                .attr('y', -70)
+                .style("opacity", 0)
+                .transition()
+                .duration(500)
+                .attr('y', -95)
+                .style("opacity", 1)
+                .text(option2)
+        }
+
+        const resetSelectedCategory = () => {
+            this.setState({ selectedCategory: null })
+        }
+
+
+        // When the button is changed, run the updateChart function
+        d3.select(".dropdown").on("change", function (d) {
+            // recover the option that has been chosen
+            const selectedOption = d3.select(this).property("value")
+
+            // run the updateChart function with this selected option
+            update(selectedOption)
+            updateLabel(selectedOption)
+            resetSelectedCategory()
+        })
         
 
     }

@@ -10,7 +10,6 @@ class BubbleChart extends Component {
             aggregatedData: []
         }
 
-        this.ref = React.createRef();
     }
 
     componentDidMount() {
@@ -39,9 +38,9 @@ class BubbleChart extends Component {
 
     drawBubbleChart() {
         // create dimensions for the chart
-        const margin = { top: 50, right: 20, bottom: 60, left: 70 },
-        width = 700 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        const margin = { top: 10, right: 100, bottom: 100, left: 120 },
+            width = 600 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom;
 
         // to pass category data in x axis
         const category = d3.map(this.state.aggregatedData, function(d) { return d.key; }).keys();
@@ -51,11 +50,12 @@ class BubbleChart extends Component {
             .domain(category)
             .range(d3.schemePaired)
 
+        const widthSvg = width + margin.left + margin.right;
+        const heightSvg = height + margin.top + margin.bottom;
         // append svg to the page
-        const svg = d3.select(this.ref.current)
+        const svg = d3.select(".bubble")
                 .append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
+                .attr("viewBox", `0 0 ${heightSvg} ${widthSvg}`)
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -80,38 +80,7 @@ class BubbleChart extends Component {
                 .domain([0, 80])
                 .range([0, 1]);
         
-        // create tooltip
-        const tooltip = d3.select(this.ref.current)
-                .append("div")
-                .attr("class", "tooltip")
-                .style("background-color", "black")
-                .style("border-radius", "10px")
-                .style("padding", "15px")
-                .style("color", "white")
-                .style("opacity", 0)
         
-        const showTooltip = function(d) {
-            tooltip.transition()
-                .duration(100)
-            tooltip
-                .style("opacity", 1)
-                .html("Funding Amount: " + d.value.total)
-                .style("left", (d3.mouse(this)[0] + 500) + "px")
-                .style("top", (d3.mouse(this)[1] + 100) + "px")
-                
-        }
-
-        const moveTooltip = function(d) {
-            tooltip
-                .style("left", (d3.mouse(this)[0] + 470) + "px")
-                .style("top", (d3.mouse(this)[1] + 100) + "px")
-        }
-
-        const hideTooltip = function(d) {
-            tooltip.transition()
-                .duration(100)
-                .style("opacity", 0)
-        }
         
 
         // create circle
@@ -128,11 +97,7 @@ class BubbleChart extends Component {
             .attr("r", function (d) { return z(Math.sqrt(d.value.total)); })
             .style("fill", function (d) { return color(Math.sqrt(d.value.total)); })
 
-        // add tooltip on the circle
-        svg.selectAll("circle")
-            .on("mouseover", showTooltip)
-            .on("mousemove", moveTooltip)
-            .on("mouseleave", hideTooltip)
+        
 
         // add label for x axis
         svg.append('text')
@@ -158,7 +123,7 @@ class BubbleChart extends Component {
     render() {
         return(
             <div>
-                <div ref={this.ref}></div>
+                <div className="bubble"></div>
             </div>
         )
     }

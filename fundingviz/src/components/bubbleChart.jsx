@@ -185,7 +185,7 @@ class BubbleChart extends Component {
                 .duration(1000)
                 .attr('class', 'label')
                 .attr('x', -(height / 2))
-                .attr('y', -70)
+                .attr('y', -50)
                 .style("opacity", 0)
                 .transition()
                 .duration(500)
@@ -213,7 +213,7 @@ class BubbleChart extends Component {
     render() {
         const table = this.state.selectedCategory ? (
             <Table rows={this.state.selectedCategory} />
-        ) : <span>You can click the circle to see the detail information here!</span>;
+        ) : <span>Click a circle to see detailed information here!</span>;
 
         return(
             <div className="all">

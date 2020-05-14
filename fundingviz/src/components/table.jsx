@@ -17,7 +17,7 @@ class Table extends Component {
                     <td>{id}</td>
                     <td>{category}</td>
                     <td>{location}</td>
-                    <td>{fundingAmount.toLocaleString()}</td>
+                    <td>€{fundingAmount.toLocaleString()}</td>
                     <td>{announcedDate}</td>
                 </tr>
             )
@@ -43,12 +43,12 @@ class Table extends Component {
 
         return (
             <p className="info">
-                Founding amount in total: {sum.toLocaleString()}
+                Funding amount in total: €{sum.toLocaleString()}
                 <br />
                 Number of funding rounds: {amount.length}
                 <br />
                 Categories with funding range
-                between {Math.min(...amount).toLocaleString()} to {Math.max(...amount).toLocaleString()}
+                between €{Math.min(...amount).toLocaleString()} to €{Math.max(...amount).toLocaleString()}
             </p>
         )
     }

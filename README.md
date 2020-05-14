@@ -15,4 +15,4 @@ npm start
 ```
 
 ## Note
-I completed this assessement in the time limit of 3 hours. Before coding, I created a scratch sheet listing out the subjectives and decisions to make for this project. You can find the scratch sheet [here](https://docs.google.com/document/d/1XcTrJzLXVQvyWnP7jcv6protQ2QRAoEjc4RoObAlUY4/edit?usp=sharing).
+I created a scratch sheet listing out the subjectives and decisions to make for this project. You can find the scratch sheet [here](https://docs.google.com/document/d/1XcTrJzLXVQvyWnP7jcv6protQ2QRAoEjc4RoObAlUY4/edit?usp=sharing).

@@ -34,8 +34,8 @@ class BubbleChart extends Component {
             })
     }
 
-    componentDidUpdate() {
-        if (this.state.aggregatedData.length) {
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.aggregatedData.length === 0 && this.state.aggregatedData.length > 0) {
             this.drawBubbleChart();
         }
     }

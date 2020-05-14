@@ -224,11 +224,13 @@ class BubbleChart extends Component {
         ) : <span>You can click the circle to see the detail information here!</span>;
 
         return(
-            <div>
-                <div className="dropdownWrapper">
-                    Data: <select className="dropdown"></select>
+            <div className="all">
+                <div className="chart">
+                    <div className="dropdownWrapper">
+                        Data: <select className="dropdown"></select>
+                    </div>
+                    <div className="bubble"></div>
                 </div>
-                <div className="bubble"></div>
                 <div className="tableWrapper">
                     <div className="table">{table}</div>
                 </div>

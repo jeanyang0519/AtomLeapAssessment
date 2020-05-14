@@ -1,5 +1,55 @@
-.App {
-  text-align: center;
+.App { 
+  /* text-align: center; */
+  /* font-family: 'Bree Serif', serif; */
+  font-size: 14px;
+
+} 
+
+h2 {
+  background-color: #21286c;
+  color: whitesmoke;
+  
 }
+
+.axis {
+  font-size: 12px;
+}
+
+.all {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  padding: 0 20px 0 20px;
+  grid-gap: 30px;
+}
+
+.dropdownWrapper {
+  padding: 20px 30px 30px 30px;
+}
+
+.tableWrapper {
+  display: grid;
+}
+
+.table {
+  place-self: center;
+}
+
+span {
+  font-size: 20px;
+  color: #6664ed;
+    padding: 30px;
+    border-style: dashed;
+    border-radius: 10px;
+
+}
+
+.info {
+    font-size: 18px;
+    background-color: blanchedalmond;
+    border-radius: 5px;
+    padding: 15px 20px;
+}
+
+
 
 

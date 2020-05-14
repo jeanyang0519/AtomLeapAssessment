@@ -11,7 +11,6 @@ class BubbleChart extends Component {
             aggregatedData: [],
             selectedCategory: null
         }
-
     }
 
     componentDidMount() {
@@ -97,14 +96,10 @@ class BubbleChart extends Component {
         let z = d3.scaleSqrt()
             .domain([0, 6400])
             .range([0, 1]);
-        
-        
-        
 
         // Add circle
         const circle = svg.selectAll("circle")
                 .data(this.state.aggregatedData)
-
         circle.enter()
             .append("circle")
             .attr("class", "bubble")
@@ -118,9 +113,7 @@ class BubbleChart extends Component {
             .attr("cy", function (d) { return y(d.value["number of rounds"]); })
             .attr("r", function (d) { return z(d.value["funding amount"]); })
             .style("fill", function (d) { return color(Math.sqrt(d.value["funding amount"])); })
-            .style("cursor", "pointer");
-
-        
+            .style("cursor", "pointer");        
 
         // X Label
         svg.append('text')
@@ -140,6 +133,7 @@ class BubbleChart extends Component {
             .attr('text-anchor', 'middle')
             .text("number of rounds")
 
+        // update the y scale and the size of the circle when changing the data type
         const update = (option) => {
             const option2 = option === "funding amount" ? "number of rounds" : "funding amount"
 
@@ -183,6 +177,7 @@ class BubbleChart extends Component {
                 .style("fill", function (d) { return color(Math.sqrt(d.value["funding amount"])); })
         }
 
+        // update the Y Label
         const updateLabel = (option) => {
             const option2 = option === "funding amount" ? "number of rounds" : "funding amount"
             yLabel
@@ -199,23 +194,20 @@ class BubbleChart extends Component {
                 .text(option2)
         }
 
+        // set selectedCategory to null to clear the table when selecting different data type
         const resetSelectedCategory = () => {
             this.setState({ selectedCategory: null })
         }
 
 
-        // When the button is changed, run the updateChart function
+        // when users select different options, run the update function
         d3.select(".dropdown").on("change", function (d) {
-            // recover the option that has been chosen
             const selectedOption = d3.select(this).property("value")
 
-            // run the updateChart function with this selected option
             update(selectedOption)
             updateLabel(selectedOption)
             resetSelectedCategory()
         })
-        
-
     }
 
     render() {

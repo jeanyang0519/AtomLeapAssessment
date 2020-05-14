@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 class Table extends Component {
     constructor(props) {
         super(props)
+
+        this.renderTable = this.renderTable.bind(this);
+        this.renderHeader = this.renderHeader.bind(this);
+        this.renderInfo = this.renderInfo.bind(this);
     }
 
     renderTable() {

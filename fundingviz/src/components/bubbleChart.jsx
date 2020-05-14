@@ -20,10 +20,13 @@ class BubbleChart extends Component {
                 let data = res.data;
                 let aggregatedData = d3.nest()
                     .key(function (d) { return d.category; })
-                    .rollup(function (v) { return {
-                        rounds: v.length,
-                        total: d3.sum(v, function(d) { return d.fundingAmount; })
-                    }})
+                    .rollup(function (v) { 
+                        return {
+                            "number of rounds": v.length,
+                            "funding amount": d3.sum(v, function (d) { return d.fundingAmount; }),
+                            table: v
+                        }
+                    })
                     .entries(data);
 
                 this.setState({ aggregatedData });

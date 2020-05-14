@@ -52,7 +52,7 @@ class Table extends Component {
     render() {
         return (
             <div>
-                <div>{this.renderFundingRange()}</div>
+                <div>{this.renderInfo()}</div>
                 <table className="table table-hover">
                     <tbody>
                         <tr className="table-warning">{this.renderHeader()}</tr>

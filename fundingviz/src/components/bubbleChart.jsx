@@ -30,7 +30,6 @@ class BubbleChart extends Component {
                     .entries(data);
 
                 this.setState({ aggregatedData });
-                // console.log(this.state.aggregatedData)
             })
     }
 

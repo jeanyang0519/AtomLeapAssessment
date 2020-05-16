@@ -34,7 +34,7 @@ class Table extends Component {
     renderInfo() {
         const amount = [];
         let sum = 0;
-        this.props.rows.map(info => {
+        this.props.rows.forEach(info => {
             const { fundingAmount } = info;
             amount.push(fundingAmount);
             sum += fundingAmount;
@@ -42,14 +42,23 @@ class Table extends Component {
 
 
         return (
-            <p className="info">
-                Funding amount in total: €{sum.toLocaleString()}
-                <br />
-                Number of funding rounds: {amount.length}
-                <br />
-                Categories with funding range
-                between €{Math.min(...amount).toLocaleString()} to €{Math.max(...amount).toLocaleString()}
-            </p>
+            <div className="info">
+                <div className="info1">
+                    <div className="dataTypeWrapper">
+                        <div className="dataType">Funding amount in total</div>
+                        <div className="num">€{sum.toLocaleString()}</div>
+                    </div>
+                    <div className="dataTypeWrapper">
+                        <div className="dataType">Number of funding rounds</div>
+                        <div className="num">{amount.length}</div>
+                    </div>
+                </div>
+                <div className="dataTypeWrapper">
+                    <div className="dataType">Categories with funding range</div>
+                    <div className="num"> €{Math.min(...amount).toLocaleString()} - €{Math.max(...amount).toLocaleString()} </div>
+                
+                </div>
+            </div>
         )
     }
 
@@ -59,7 +68,7 @@ class Table extends Component {
                 <div>{this.renderInfo()}</div>
                 <table className="table table-hover">
                     <tbody>
-                        <tr className="table-warning">{this.renderHeader()}</tr>
+                        <tr className="tableHeader">{this.renderHeader()}</tr>
                         {this.renderTable()}
                     </tbody>
                 </table>

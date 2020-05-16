@@ -112,7 +112,7 @@ class BubbleChart extends Component {
             .attr("cx", function (d) { return x(d.key); })
             .attr("cy", function (d) { return y(d.value["number of rounds"]); })
             .attr("r", function (d) { return z(d.value["funding amount"]); })
-            .style("fill", function (d) { return color(Math.sqrt(d.value["funding amount"])); })
+            .style("fill", function (d) { return color(d.value["funding amount"]); })
             .style("cursor", "pointer");        
 
         // X Label
@@ -174,7 +174,7 @@ class BubbleChart extends Component {
                 .attr("cx", function (d) { return x(d.key); })
                 .attr("cy", function (d) { return y(d.value[option2]); })
                 .attr("r", function (d) { return z(d.value[option]); })
-                .style("fill", function (d) { return color(Math.sqrt(d.value["funding amount"])); })
+                .style("fill", function (d) { return color(d.value["funding amount"]); })
         }
 
         // update the Y Label
@@ -213,7 +213,7 @@ class BubbleChart extends Component {
     render() {
         const table = this.state.selectedCategory ? (
             <Table rows={this.state.selectedCategory} />
-        ) : <span>Click a circle to see detailed information here!</span>;
+        ) : <div className="msg">Click a circle to see detailed information here!</div>;
 
         return(
             <div className="all">
